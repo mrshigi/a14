@@ -145,7 +145,7 @@ const addBook = (e) => {
 
 window.onload = () => {
     showBooks();
-    document.getElementById("add-edit-book-form").onsubmit = addEditBooks;
+    document.getElementById("add-edit-book-form").onsubmit = addEditBook;
     document.getElementById("add-link").onclick = showHideAdd;
 
     document.querySelector(".close").onclick = () => {
