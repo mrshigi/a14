@@ -152,5 +152,5 @@ window.onload = () => {
         document.querySelector(".dialog").classList.add("transparent");
     };
 
-    document.getElementById("add-summary").onclick = addSummary;
+    document.getElementById("add-summary").onclick = addBook;
 };
