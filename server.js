@@ -32,6 +32,7 @@ let books = [{
         "Family finds child, saves him",
         "The end, super depressing read",
     ],
+    img: "images/road.png",
 },
 {
     _id: 2,
@@ -50,6 +51,7 @@ let books = [{
         "Stuff hits the fan and Shinji kinda brings end of world",
         "Shinji accepts himself, stops total world destruction but resets world population",
     ],
+    img: "images/eva.png",
 },
 {
     _id: 3,
@@ -68,6 +70,7 @@ let books = [{
         "COMBINE THEM ALL INTO COMPLEX FINACIAL INSTRUMENTS",
         "BLOW UP WORLD ECONOMY VIA DEBT DERIVATIVES",
     ],
+    img: "images/options.png",
 },
 ];
 
