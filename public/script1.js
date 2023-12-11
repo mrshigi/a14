@@ -1,95 +1,96 @@
-const getBooks = async() => {
+const getRecipes = async() => {
     try {
-        return (await fetch("api/books/")).json();
+        return (await fetch("api/recipes/")).json();
     } catch (error) {
         console.log(error);
     }
 };
 
-const showBooks = async() => {
-    let books = await getBooks();
-    let booksDiv = document.getElementById("book-list");
-    booksDiv.innerHTML = "";
-    books.forEach((book) => {
+const showRecipes = async() => {
+    let recipes = await getRecipes();
+    let recipesDiv = document.getElementById("recipe-list");
+    recipesDiv.innerHTML = "";
+    recipes.forEach((recipe) => {
         const section = document.createElement("section");
-        section.classList.add("book");
-        booksDiv.append(section);
+        section.classList.add("recipe");
+        recipesDiv.append(section);
 
         const a = document.createElement("a");
         a.href = "#";
         section.append(a);
 
         const h3 = document.createElement("h3");
-        h3.innerHTML = book.name;
+        h3.innerHTML = recipe.name;
         a.append(h3);
 
         a.onclick = (e) => {
             e.preventDefault();
-            displayDetails(book);
+            displayDetails(recipe);
         };
     });
 };
 
-const displayDetails = (book) => {
-    const bookDetails = document.getElementById("book-details");
-    bookDetails.innerHTML = "";
+const displayDetails = (recipe) => {
+    const recipeDetails = document.getElementById("recipe-details");
+    recipeDetails.innerHTML = "";
 
     const h3 = document.createElement("h3");
-    h3.innerHTML = book.name;
-    bookDetails.append(h3);
+    h3.innerHTML = recipe.name;
+    recipeDetails.append(h3);
 
     const dLink = document.createElement("a");
     dLink.innerHTML = "	&#x2715;";
-    bookDetails.append(dLink);
+    recipeDetails.append(dLink);
     dLink.id = "delete-link";
 
     const eLink = document.createElement("a");
     eLink.innerHTML = "&#9998;";
-    bookDetails.append(eLink);
+    recipeDetails.append(eLink);
     eLink.id = "edit-link";
 
     const p = document.createElement("p");
-    bookDetails.append(p);
-    p.innerHTML = book.description;
+    recipeDetails.append(p);
+    p.innerHTML = recipe.description;
 
     const ul = document.createElement("ul");
-    bookDetails.append(ul);
-    console.log(book.summary);
-    book.summaries.forEach((summary) => {
+    recipeDetails.append(ul);
+    console.log(recipe.ingredients);
+    recipe.ingredients.forEach((ingredient) => {
         const li = document.createElement("li");
         ul.append(li);
-        li.innerHTML = summary;
+        li.innerHTML = ingredient;
     });
 
     eLink.onclick = (e) => {
         e.preventDefault();
         document.querySelector(".dialog").classList.remove("transparent");
-        document.getElementById("add-edit-title").innerHTML = "Edit Books";
+        document.getElementById("add-edit-title").innerHTML = "Edit Recipe";
     };
 
     dLink.onclick = (e) => {
         e.preventDefault();
+        //delete recipe
     };
 
-    populateEditForm(book);
+    populateEditForm(recipe);
 };
 
-const populateEditForm = (book) => {};
+const populateEditForm = (recipe) => {};
 
-const addEditBook = async(e) => {
+const addEditRecipe = async(e) => {
     e.preventDefault();
-    const form = document.getElementById("add-edit-book-form");
+    const form = document.getElementById("add-edit-recipe-form");
     const formData = new FormData(form);
     let response;
-    //trying to add a new "book lol tuff"
+    //trying to add a new recipe
     if (form._id.value == -1) {
         formData.delete("_id");
         formData.delete("img");
-        formData.append("summaries", getSummaries());
+        formData.append("ingredients", getIngredients());
 
         console.log(...formData);
 
-        response = await fetch("/api/books", {
+        response = await fetch("/api/recipes", {
             method: "POST",
             body: formData
         });
@@ -103,50 +104,50 @@ const addEditBook = async(e) => {
     response = await response.json();
     resetForm();
     document.querySelector(".dialog").classList.add("transparent");
-    showBooks();
+    showRecipes();
 };
 
-const getSummaries = () => {
-    const inputs = document.querySelectorAll("#summary-boxes input");
-    let summaries = [];
+const getIngredients = () => {
+    const inputs = document.querySelectorAll("#ingredient-boxes input");
+    let ingredients = [];
 
     inputs.forEach((input) => {
-        summaries.push(input.value);
+        ingredients.push(input.value);
     });
 
-    return summaries;
+    return ingredients;
 }
 
 const resetForm = () => {
-    const form = document.getElementById("add-edit-book-form");
+    const form = document.getElementById("add-edit-recipe-form");
     form.reset();
     form._id = "-1";
-    document.getElementById("summary-boxes").innerHTML = "";
+    document.getElementById("ingredient-boxes").innerHTML = "";
 };
 
 const showHideAdd = (e) => {
     e.preventDefault();
     document.querySelector(".dialog").classList.remove("transparent");
-    document.getElementById("add-edit-title").innerHTML = "Add Book";
+    document.getElementById("add-edit-title").innerHTML = "Add Recipe";
     resetForm();
 };
 
-const addBook = (e) => {
+const addIngredient = (e) => {
     e.preventDefault();
-    const section = document.getElementById("summary-boxes");
+    const section = document.getElementById("ingredient-boxes");
     const input = document.createElement("input");
     input.type = "text";
     section.append(input);
 }
 
 window.onload = () => {
-    showBooks();
-    document.getElementById("add-edit-book-form").onsubmit = addEditBooks;
+    showRecipes();
+    document.getElementById("add-edit-recipe-form").onsubmit = addEditRecipe;
     document.getElementById("add-link").onclick = showHideAdd;
 
     document.querySelector(".close").onclick = () => {
         document.querySelector(".dialog").classList.add("transparent");
     };
 
-    document.getElementById("add-summary").onclick = addSummary;
+    document.getElementById("add-ingredient").onclick = addIngredient;
 };

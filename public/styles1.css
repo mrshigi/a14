@@ -1,7 +1,9 @@
 :root {
-    --primary: tan;
-    --secondary: grey;
+    --primary: coral;
+    --secondary: cornflowerblue;
 }
+
+
 /* Structure */
 
 body {
@@ -9,20 +11,20 @@ body {
     background-color: azure;
 }
 
-.book {
+.recipe {
     padding: 10px;
     margin: 10px;
     background: lightblue;
     border-radius: 5px;
 }
 
-.book img {
+.recipe img {
     max-width: 90%;
     display: block;
     margin: auto;
 }
 
-#book-details-column {
+#recipe-details-column {
     padding: 10px;
     margin: 10px;
     background: lightblue;
@@ -43,7 +45,7 @@ body {
     float: right;
 }
 
-#add-edit-book-container {
+#add-edit-recipe-container {
     padding: 10px;
     margin: 10px;
     background: lightblue;
@@ -61,15 +63,16 @@ label {
     display: inline;
 }
 
-#summary-p input {
+#ingredients-p input {
     margin-top: 5px;
 }
 
-#add-summary {
+#add-ingredient {
     color: darkblue;
     font-size: 0.75em;
     text-align: right;
 }
+
 
 /* Modal Dialog */
 
@@ -93,6 +96,8 @@ label {
     background-color: rgba(0, 0, 0, 0.4);
     /* Black w/ opacity */
 }
+
+
 /* Modal Content */
 
 .dialog {
@@ -110,6 +115,7 @@ label {
     margin: auto;
 }
 
+
 /* The Close Button */
 
 .close {
@@ -126,6 +132,7 @@ label {
     text-decoration: none;
     cursor: pointer;
 }
+
 
 /* Typography */
 
@@ -157,10 +164,10 @@ a {
     .two-columns div {
         flex: 1;
     }
-    .book {
+    .recipe {
         width: 25%;
     }
-    #add-edit-book-container {
+    #add-edit-recipe-container {
         max-width: 30%;
         margin: auto;
     }

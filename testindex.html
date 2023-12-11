@@ -2,32 +2,32 @@
 <html>
 
 <head>
-    <link rel="stylesheet" href="styles.css" />
-    <script src="script.js"></script>
+    <link rel="stylesheet" href="styles1.css" />
+    <script src="script1.js"></script>
 </head>
 
 <body>
     <header>
-        <h1>Books</h1>
+        <h1>Recipes</h1>
         <a href="#" id="add-link">+</a>
     </header>
 
     <div class="columns two-columns">
-        <div id="book-list" class="columns"></div>
-        <div id="book-details-column">
+        <div id="recipe-list" class="columns"></div>
+        <div id="recipe-details-column">
             <h2>Details</h2>
 
-            <div id="book-details"></div>
+            <div id="recipe-details"></div>
         </div>
     </div>
-    <div id="add-edit-book-container" class="dialog transparent">
+    <div id="add-edit-recipe-container" class="dialog transparent">
         <span class="close">&times;</span>
 
-        <h3 id="add-edit-title">Book</h3>
-        <form id="add-edit-book-form" method="post">
+        <h3 id="add-edit-title">Recipe</h3>
+        <form id="add-edit-recipe-form" method="post">
             <input type="hidden" name="_id" value="-1" />
             <p>
-                <label for="name ">Book Name:</label>
+                <label for="name ">Recipe Name:</label>
                 <input type="text" id="name" name="name" required />
             </p>
             <p>
@@ -40,10 +40,10 @@
                 <input type="file" id="img" name="img" />
             </p>
 
-            <p id="book-p ">
-                <label class="inline">Summary:</label>
-                <a href="#" id="add-summary">Add Book</a>
-                <section id="summary-boxes"></section>
+            <p id="ingredients-p ">
+                <label class="inline">Ingredients:</label>
+                <a href="#" id="add-ingredient">Add Ingredient</a>
+                <section id="ingredient-boxes"></section>
             </p>
             <p>
                 <button type="submit">Submit</button>
