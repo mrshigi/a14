@@ -17,7 +17,7 @@ const showBooks = async() => {
 
         let img = document.createElement("img");
         section.append(img);
-        img.src="https://assignment14-uxfp.onrender.com" + books.img;
+        img.src="https://assignment14-uxfp.onrender.com/" + book.img;
 
         const a = document.createElement("a");
         a.href = "#";
