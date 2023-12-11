@@ -1,6 +1,6 @@
 const getBooks = async() => {
     try {
-        return (await fetch("https://assignment14-32fu.onrender.com/api/books")).json();
+        return (await fetch("https://assignment14-uxfp.onrender.com/api/books")).json();
     } catch (error) {
         console.log(error);
     }
@@ -17,7 +17,7 @@ const showBooks = async() => {
 
         let img = document.createElement("img");
         section.append(img);
-        img.src="https://assignment14-32fu.onrender.com" +book.img;
+        img.src="https://assignment14-uxfp.onrender.com" +book.img;
 
         const a = document.createElement("a");
         a.href = "#";
