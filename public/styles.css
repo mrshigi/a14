@@ -40,7 +40,7 @@ body {
 #book-details-column {
     padding: 10px;
     margin: 10px;
-    background: lightblue;
+    background: #0753a513;
     border-radius: 5px;
 }
 
@@ -61,7 +61,7 @@ body {
 #add-edit-book-container {
     padding: 10px;
     margin: 10px;
-    background: lightblue;
+    background: #0753a513;
     border-radius: 5px;
 }
 
