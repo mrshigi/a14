@@ -17,7 +17,7 @@ const showBooks = async() => {
 
         let img = document.createElement("img");
         section.append(img);
-        img.src="http://localhost:3000/" +books.img;
+        img.src="http://localhost:3000/api/books" +books.img;
 
         const a = document.createElement("a");
         a.href = "#";
