@@ -47,6 +47,10 @@ const displayDetails = (book) => {
     eLink.innerHTML = "&#9998;";
     bookDetails.append(eLink);
     eLink.id = "edit-link";
+    
+    let img = document.createElement("img");
+    section.append(img);
+    img.src="http://localhost:3000/" +stocks.img;
 
     const p = document.createElement("p");
     bookDetails.append(p);
