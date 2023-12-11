@@ -15,6 +15,10 @@ const showBooks = async() => {
         section.classList.add("book");
         booksDiv.append(section);
 
+        let img = document.createElement("img");
+        section.append(img);
+        img.src="http://localhost:3000/" +books.img;
+
         const a = document.createElement("a");
         a.href = "#";
         section.append(a);
