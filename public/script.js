@@ -1,6 +1,6 @@
 const getBooks = async() => {
     try {
-        return (await fetch("http://localhost:3000")).json();
+        return (await fetch("http://localhost:3000/api/books")).json();
     } catch (error) {
         console.log(error);
     }
@@ -32,6 +32,12 @@ const showBooks = async() => {
             displayDetails(book);
         };
     });
+};
+const populateEditForm = (book) => {
+    document.getElementById("name").value = book.name;
+    document.getElementById("description").value = book.description;
+    // Populate other fields as necessary
+    document.getElementById("add-edit-book-form")._id.value = book._id;
 };
 
 const displayDetails = (book) => {
@@ -82,12 +88,7 @@ const displayDetails = (book) => {
     populateEditForm(book);
 };
 
-const populateEditForm = (book) => {
-    document.getElementById("name").value = book.name;
-    document.getElementById("description").value = book.description;
-    // Populate other fields as necessary
-    document.getElementById("add-edit-book-form")._id.value = book._id;
-};
+
 
 const addEditBook = async (e) => {
     e.preventDefault();
@@ -159,7 +160,7 @@ const confirmDelete = async (bookId) => {
         await fetch(`/api/books/${bookId}`, {
             method: "DELETE"
         });
-        showBooks(); // Refresh the book list
+        showBooks();
     }
 };
 

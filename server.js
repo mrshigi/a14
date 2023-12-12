@@ -87,20 +87,27 @@ if (result.error) {
 }
 app.put("/api/books/edit", upload.single("img"), (req, res) => {
     const { id } = req.body;
-    const bookIndex = books.findIndex(book => book._id == id);
-    if (bookIndex !== -1) {
-        books[bookIndex] = {
-            ...books[bookIndex],
-            name: req.body.name,
-            description: req.body.description,
-            // Add other fields as necessary
-        };
+    let bookFound = false;
+    
+    books = books.map(book => {
+        if (book._id == id) {
+            bookFound = true;
+            return {
+                ...book,
+                name: req.body.name,
+                description: req.body.description,
+                // Update other fields as necessary
+            };
+        }
+        return book;
+    });
+
+    if (bookFound) {
         res.send(books);
     } else {
         res.status(404).send("Book not found");
     }
 });
-
 // DELETE endpoint for deleting a book
 app.delete("/api/books/:id", (req, res) => {
     const { id } = req.params;
