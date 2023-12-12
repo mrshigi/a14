@@ -64,6 +64,10 @@ const displayDetails = (book) => {
         ul.append(li);
         li.innerHTML = summary;
     });
+    const deleteButton = document.createElement("button");
+    deleteButton.innerText = "Delete";
+    deleteButton.onclick = () => confirmDelete(book._id);
+    bookDetails.append(deleteButton);
 
     eLink.onclick = (e) => {
         e.preventDefault();
@@ -78,20 +82,28 @@ const displayDetails = (book) => {
     populateEditForm(book);
 };
 
-const populateEditForm = (book) => {};
+const populateEditForm = (book) => {
+    document.getElementById("name").value = book.name;
+    document.getElementById("description").value = book.description;
+    // Populate other fields as necessary
+    document.getElementById("add-edit-book-form")._id.value = book._id;
+};
 
-const addEditBook = async(e) => {
+const addEditBook = async (e) => {
     e.preventDefault();
     const form = document.getElementById("add-edit-book-form");
     const formData = new FormData(form);
-    let response;
-    //trying to add a new "book lol tuff"
-    if (form._id.value == -1) {
+
+    if (form._id.value != -1) { // Edit book
+        formData.append("id", form._id.value); // Assuming _id is used for book ID
+        response = await fetch("/api/books/edit", {
+            method: "PUT",
+            body: formData
+        });
+    } else { // Add new book
         formData.delete("_id");
         formData.delete("img");
         formData.append("summaries", getSummaries());
-
-        console.log(...formData);
 
         response = await fetch("/api/books", {
             method: "POST",
@@ -142,6 +154,16 @@ const addBook = (e) => {
     input.type = "text";
     section.append(input);
 }
+const confirmDelete = async (bookId) => {
+    if (confirm("Are you sure you want to delete this book?")) {
+        await fetch(`/api/books/${bookId}`, {
+            method: "DELETE"
+        });
+        showBooks(); // Refresh the book list
+    }
+};
+
+
 
 window.onload = () => {
     showBooks();
